@@ -1,51 +1,20 @@
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
 port = 8000;
 
-const Filmes = [
-    {
-        nome: 'Capitã Marvel',
-        nota: 10,
-        urlImagem: '#',
-        genero: 'Aventura',
-        id: 1
-    },
-    {
-        nome: 'Capitã Marvel',
-        nota: 10,
-        urlImagem: '#',
-        genero: 'Aventura',
-        id: 2
-    },
-    {
-        nome: 'Capitã Marvel',
-        nota: 10,
-        urlImagem: '#',
-        genero: 'Aventura',
-        id: 3
-    },
-    {
-        nome: 'Capitã Marvel',
-        nota: 10,
-        urlImagem: '#',
-        genero: 'Aventura',
-        id: 4
-    },
-    {
-        nome: 'Capitã Marvel',
-        nota: 10,
-        urlImagem: '#',
-        genero: 'Aventura',
-        id: 5
-    },
-]   
+//middleware
+app.use(express(JSON)); //AQUI O MÉTODO USO FALA PARA O EXPRESS TRABALHAR COM JSON
+app.use(cors());
+
+const FilmesRouter = require('./routers/filmes.routes');
+app.use('/filmes', FilmesRouter); //Inicializando as rotas /filmes
+ 
+
 app.get('/', (req, res) => {
-    res.send('My Favorite Movies')
+    res.send('My Favorite Movies');
 })
-
-
-
 
 
 app.listen(port, () => {
