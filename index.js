@@ -1,22 +1,36 @@
-const express = require('express');
-const cors = require('cors');
+// BACK-END -> CRUD
+// C - CREATE METHOD GET
+// R - READ METHOD POST
+// U - UPDATE METHOD PUT
+// D - DELETE METHOD DELETE
 
-const app = express();
-port = 8000;
+//Passos para começar o projeto:
+//1° npm init ou npm init -y => ESTE COMANDO VAI CRIAR O AQRQUIVO PACKAGE.JSON QUE É ONDE ESTÁ TODA A CONFIGURAÇÃO DO PROJETO
+//2° npm install express => ESTE COMANDO VAI INSTALAR A BIBLIOTECA EXPRESS (PARA USAR O EXPRESS É PRECISO INCLUIR A FUNÇÃO REQUIRE() NO ARQUIVO INDEX.JS)
+//3° npm install cors --save => ESTE COMANDO É PARA INSTALAR O MECANISMO "CORS" QUE USA CABEÇALHOS ADICIONAIS HTTP PARA INFORMAR A UM NAVEGADOR QUE PERMITA QUE UM APLICATIVO WEB SEJA EXECUTADO EM UM DOMIÍNIO COM PERMISSÃO PARA ACESSAR RECURSOS SELECIONADOS DE UM SERVIDOR EM UMA DISTINTA. (ASSIM COMO O EXPRESS, É PRECISO INCLUIR A FUNÇÃO REQUIRE() PARA PODER USA-LO)
+//4° npm install -g nodemon => ESTE COMANDO INSTALA O NODEMON PARA QUE VENHAMOS TRABALHAR COM NOSSA APLICAÇÃO ATUALIZANDO AUTOMATICAMENTE A CADA MODIFCAÇÃO
+
+
+const express = require('express'); //IMPORTANDO A BIBLIOTECA EXPRESS
+const cors = require('cors'); //IMPORTANDO O MECANISMO CORS (Cross-origin Resource Sharing)
+
+const app = express(); //INICIALIZANDO O EXPRESS
+const port = 8080; // DEFININDO UMA PORTA DE SAÍDA PARA O PROJETO E ADICIONANDO A UMA CONSTANTE
 
 //middleware
-app.use(express(JSON)); //AQUI O MÉTODO USO FALA PARA O EXPRESS TRABALHAR COM JSON
-app.use(cors());
+app.use(express(JSON)); //AQUI O MÉTODO "USE" FALA PARA O EXPRESS TRABALHAR COM JSON NO BODY DO PROJETO.
+app.use(cors()); //AQUI O MÉTODO "USE" FALA PARA O EXPRESS UTILIZAR AS CONFIGURAÇÕES DO "CORS".
 
-const FilmesRouter = require('./routers/filmes.routes');
-app.use('/filmes', FilmesRouter); //Inicializando as rotas /filmes
+const FilmesRouter = require('./routers/filmes.routes'); //IMPORTAÇÃO DAS ROTAS DOS FILMES
+app.use('/filmes', FilmesRouter); //INICIALIZANDO A ROTA =>  /filmes 
  
 
 app.get('/', (req, res) => {
-    res.send('My Favorite Movies');
+    res.send('Hello My Favorite Movies Users');
 })
 
-
+//O MÉTODO LISTEN É USADO PARA VINCULAR E OUVIR AS CONEXÕES NO HOST E NA PORTA ESPECIFICADA
+//NESSE CASO 127.0.0.1 E PORT 8080
 app.listen(port, () => {
     console.log(`API running on http://localhost:${port}`)
 })

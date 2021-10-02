@@ -44,8 +44,19 @@ router.get('/', (req, res) => {
 })
 
 router.post('/add', (req, res) => {
-    res.send(req.body);
+    const filme = req.body;
+    filme.id = Filmes.length + 1;
+    Filmes.push(filme);
+    res.send({
+        message: "Filme cadastrado com sucesso!!!",
+    })
 })
 
+router.get('/:id', (req, res) =>{
+    const id = req.params.id;
+    Filmes.findIndex((filme) => {
+        return filme.id == idParames
+    })
+})
 
 module.exports = router; // Exportando o router
