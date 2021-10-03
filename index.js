@@ -21,7 +21,6 @@ app.use(express.json()); //AQUI O MÉTODO "USE" FALA PARA O EXPRESS TRABALHAR CO
 app.use(cors()); //AQUI O MÉTODO "USE" FALA PARA O EXPRESS UTILIZAR AS CONFIGURAÇÕES DO "CORS".
 
 const FilmesRouter = require("./routers/filmes.routes"); //IMPORTAÇÃO DAS ROTAS DOS FILMES
-
 app.use("/filmes", FilmesRouter); //INICIALIZANDO A ROTA =>  /filmes
 
 app.get("/", (req, res) => {
@@ -31,5 +30,5 @@ app.get("/", (req, res) => {
 //O MÉTODO LISTEN É USADO PARA VINCULAR E OUVIR AS CONEXÕES NO HOST E NA PORTA ESPECIFICADA
 //NESSE CASO 127.0.0.1 E PORT 8080
 app.listen(port, () => {
-  console.log(`API running on http://localhost:${port}`);
+  console.log(`API running on http://localhost:${port}/`);
 });

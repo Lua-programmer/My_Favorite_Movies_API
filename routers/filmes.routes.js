@@ -12,8 +12,23 @@ const Filmes = [
     nome: "Capitã Marvel",
     genero: "Aventura",
     nota: 10,
-    urlImagem:
+    imagem:
       "https://media.fstatic.com/QUAQAfm_5r5BplLBp5o3g0PyiZE=/290x478/smart/media/movies/covers/2019/01/DxDbcwbVAAA6xeu.jpg",
+    id: Date.now(),
+  },
+  {
+    nome: "Capitão América: O Primeiro Vingador",
+    genero: "Ação",
+    nota: 10,
+    imagem:
+      "https://i.pinimg.com/originals/6f/b5/9a/6fb59a34b163b3fa905a054f8cdc8ccc.jpg",
+    id: Date.now(),
+  },
+  {
+    nome: "Homem de Ferro II",
+    genero: "Ação",
+    nota: 10,
+    imagem: "http://vortexcultural.com.br/images/2019/04/homem-de-ferro-2.jpg",
     id: Date.now(),
   },
 ];
@@ -67,21 +82,8 @@ router.post("/add", (req, res) => {
   const filme = req.body;
   filme.id = Date.now();
 
-  //VALIDAÇÃO
-  //PARA CADASTRAR UM NOVO FILME O BODY PRECISA ESTAR TOTALMENTE PREENCHIDO, SE NÃO ESTIVER IRÁ RETORNAR UMA MENSAGEM DE PEDIDO RUIM
-  if (
-    !filme ||
-    !filme.nome ||
-    !filme.genero ||
-    !filme.nota ||
-    !filme.urlImagem
-  ) {
-    console.log(400);
-    res.status(400).send("Bad request");
-  } else {
-    //CASO CONTRÁRIO, O FILME SERÁ ADICIONADO AO ARRAY
-    Filmes.push(filme);
-  }
+  Filmes.push(filme);
+
   //RETORNANDO UMA MENSAGEM COM O FILME ADICIONADO
   console.log(201);
   res.status(201).send(filme);
