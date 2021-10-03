@@ -99,28 +99,28 @@ router.put("/:id", (req, res) => {
   filmeExistente.nome = novoFilme.nome;
   filmeExistente.genero = novoFilme.genero;
   filmeExistente.nota = novoFilme.nota;
-  filmeExistente.urlImagem = novoFilme.urlImagem;
+  filmeExistente.imagem = novoFilme.imagem;
 
-  //VALIDAÇÃO
-  //SE NÃO TIVER NENHUM FILME CADASTRADO NO ARRAY, IRÁ MOSTRAR UM ERRO 400
-  if (!Object.keys(novoFilme).length) {
-    console.log(400);
-    res.status(400).send("Bad request");
-    return;
-  }
+  // //VALIDAÇÃO
+  // //SE NÃO TIVER NENHUM FILME CADASTRADO NO ARRAY, IRÁ MOSTRAR UM ERRO 400
+  // if (!Object.keys(novoFilme).length) {
+  //   console.log(400);
+  //   res.status(400).send("Bad request");
+  //   return;
+  // }
 
-  //SE O BODY NÃO ESTIVER PREENCHIDO IRÁ RETORNAR UM ERRO 400
-  if (
-    !novoFilme ||
-    !novoFilme.nome ||
-    !novoFilme.genero ||
-    !novoFilme.nota ||
-    !novoFilme.urlImagem
-  ) {
-    console.log(400);
-    res.status(400).send("Bad request");
-    return;
-  }
+  // //SE O BODY NÃO ESTIVER PREENCHIDO IRÁ RETORNAR UM ERRO 400
+  // if (
+  //   !novoFilme ||
+  //   !novoFilme.nome ||
+  //   !novoFilme.genero ||
+  //   !novoFilme.nota ||
+  //   !novoFilme.imagem
+  // ) {
+  //   console.log(400);
+  //   res.status(400).send("Bad request");
+  //   return;
+  // }
 
   res.send(atualizado);
 });
