@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "b75835b9-ac50-469d-b813-47e683bfe7ed",
+		"name": "My favorite movies",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Retorna um array de filmes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/filmes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"filmes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Retorna um filme por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/filmes/1633228414780",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"filmes",
+						"1633228414780"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Adicionar um filme ao Array",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\":\"novo filme\",\r\n    \"genero\":\"aventura\",\r\n    \"nota\": \"7\",\r\n    \"urlImagem\":\"imagem\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/filmes/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"filmes",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualização de filme por id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\":\"filme atualizado\",\r\n    \"genero\":\"aventura\",\r\n    \"nota\": \"7\",\r\n    \"urlImagem\":\"imagem\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/filmes/1633230802363",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"filmes",
+						"1633230802363"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir filme por ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/filmes/1633231690669",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"filmes",
+						"1633231690669"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
