@@ -43,17 +43,18 @@ router.get('/:id', (req, res) => {
 //POST - /add  - CADASTRAR UM NOVO FILME
 router.post('/add', (req, res) => {
     const filme = req.body;
-    filme.id = Date.now();
-    
+    filme.id = Date.now()
+
     //VALIDAÇÃO
-    if(!filme || filme.nome || filme.genero || filme.nota || filme.urlImagem) {
+    if (!filme || !filme.nome || !filme.genero || !filme.nota || !filme.urlImagem) {
         console.log(400);
         res.status(400).send("Bad request");
-    }else {
+    }else{
+        
         Filmes.push(filme);
     }
-    
-    res.send(filme);
+
+    res.status(201).send(filme);
 })
 
 
