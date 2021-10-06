@@ -34,24 +34,12 @@ const Filmes = [
 ];
 //O MÉTODO Date.now() RETORNA O NÚMERO DE MILISEGUNDOS DECORRIDOS DESDE 1° DE JANEIRO DE 1970 00:00:00 UTC. DESSA FORMA UTILIZANDO ESSE MÉTODO NO ID DO PROJETO IREMOS TER SEMPRE UM 'ID' DIFERENTE.
 
-//CONSTANTES DE VALIDAÇÃO
-
-const getFilmesValidos = () => Filmes.filter(Boolean);
-
-const getFilmeIndexById = (id) =>
-  getFilmesValidos().findIndex((filme) => filme.id == id);
 
 //-----------------------------INICIO DO CRUD----------------------------------------------------------//
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------------------//
 //GET /filmes - RETORNANDO UMA LISTA DE FILMES
 router.get("/", (req, res) => {
-  //VALIDAÇÃO
-  //CASO O ARRAY ESTEJA VAZIO IRÁ RETORNAR A MENSAGEM ABAIXO
-  if (Filmes.length == 0) {
-    res.send("A página não possui filmes cadastrados");
-    return;
-  }
 
   res.send(Filmes);
 });
@@ -64,13 +52,6 @@ router.get("/:id", (req, res) => {
   //O MÉTODO FINDINDEX EXECUTA A FUNÇÃO CALLBACK UMA VEZ PARA CADA ELEMENTO PRESENTE NO ARRAY ATÉ ENCONTRAR UM ONDE O CALLBACK RETORNA UM VALOR VERDADEIRO. SE TAL ELEMENTO FOR ENCONTRADO, FINDINDEX RETORNA IMEDIATAMENTE O INDICE DESTE ELEMENTO
   const index = Filmes.findIndex((filme) => filme.id == idP);
   const filme = Filmes[index];
-
-  //VALIDAÇÃO
-  if (!filme) {
-    console.log(404);
-    res.status(404).send("Sorry can't find that!");
-    return;
-  }
 
   //RESPOSTA A REQUISIÇÃO
   res.send(filme);
@@ -101,27 +82,7 @@ router.put("/:id", (req, res) => {
   filmeExistente.nota = novoFilme.nota;
   filmeExistente.imagem = novoFilme.imagem;
 
-  // //VALIDAÇÃO
-  // //SE NÃO TIVER NENHUM FILME CADASTRADO NO ARRAY, IRÁ MOSTRAR UM ERRO 400
-  // if (!Object.keys(novoFilme).length) {
-  //   console.log(400);
-  //   res.status(400).send("Bad request");
-  //   return;
-  // }
-
-  // //SE O BODY NÃO ESTIVER PREENCHIDO IRÁ RETORNAR UM ERRO 400
-  // if (
-  //   !novoFilme ||
-  //   !novoFilme.nome ||
-  //   !novoFilme.genero ||
-  //   !novoFilme.nota ||
-  //   !novoFilme.imagem
-  // ) {
-  //   console.log(400);
-  //   res.status(400).send("Bad request");
-  //   return;
-  // }
-
+  
   res.send(atualizado);
 });
 
@@ -129,16 +90,8 @@ router.put("/:id", (req, res) => {
 //DELETE  - /filmes/id  - EXCLUINDO FILME POR ID
 router.delete("/:id", (req, res) => {
   const id = req.params.id;
-  const filmeIndex = getFilmeIndexById(id);
-
-  //VALIDAÇÃO
-  //SE O ID DO FILME FOR MENR QUE ZERO OU DIFERENTE DE ALGUM ID JÁ EXISTENTE RETORNARÁ ERRO 404
-  if (filmeIndex < 0) {
-    res.status(404).send("Sorry can't find that!");
-    return;
-  }
-
-  Filmes.splice(filmeIndex, 1);
+  const index = Filmes.findIndex((filme) => filme.id == id);
+  Filmes.splice(index, 1);
 
   res.send(excluido);
 });
